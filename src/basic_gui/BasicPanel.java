@@ -1,14 +1,15 @@
 package basic_gui;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class BasicPanel extends JPanel implements ActionListener{
+import java.awt.event.ActionListener;
 
-    private Integer pressCount=0; // Instance variable
-
+public class BasicPanel extends JPanel implements ActionListener {
+    private Integer pressCount = 0;
     private JLabel nameLabel = new JLabel("Andy");
-    public  BasicPanel() {
+
+    public BasicPanel() {
+        //JLabel nameLabel = new JLabel("Andy");
         JButton clickButton = new JButton("Click Me");
         JButton resetButton = new JButton("Reset");
 
@@ -18,25 +19,21 @@ public class BasicPanel extends JPanel implements ActionListener{
 
         clickButton.addActionListener(this);
         resetButton.addActionListener(this);
-
     }
 
+    // This method is for one listener (the BasicPanel) but it
+    // is listening to two different buttons, so I have to check
+    // which button generated the event.
     @Override
     public void actionPerformed(ActionEvent ae) {
-
-        // This if-else is looking at one action listener (the click me button) and
-        // sets the other button to the opposite action.
-        if (ae.getActionCommand().equals("Click Me")) {
+        //add(new JLabel("Button pressed"));
+        if(ae.getActionCommand().equals("Click Me")) {
             pressCount++;
         } else {
-            pressCount=0;
+            pressCount = 0;
         }
 
-
-        //add(new JLabel("Button Pressed"));
         nameLabel.setText("Press count: " + pressCount);
         revalidate();
     }
-
-
 }
